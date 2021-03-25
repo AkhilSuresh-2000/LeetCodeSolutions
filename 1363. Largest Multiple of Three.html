@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
+        body {
+            background-color: lightsalmon;
+            margin: 0;
+            padding: 0;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Akaya Telivigala', cursive;
+        }
+        input{
+            padding: 1rem;
+            width: 350px;
+        }
+        button{
+            margin: 1rem;
+            padding: .3rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>Quiz 3</h1>
+        <input required id="input" placeholder="Enter 3 digits seperate with a comma ( , )"/></br>
+        <button onclick="quiz()">Submit</button>
+        <h2 id="answer"></h2>
+        <h2 id="largestnum"></h2>
+        <h2 id="resultis"></h2>
+    </div>
+    <script>
+        function quiz() {
+            const input = document.getElementById("input").value;
+            const divisibleBy3 = [];
+            //sorting high to low and parsing to int
+            const x = input.split(",").sort((p, q) => q - p).map((item) => parseInt(item));
+            const sum = x.reduce((a, c) => a + c);
+            console.log(x);
+            console.log(sum);
+            x.forEach(item => {
+                if (item % 3 === 0) {
+                    if (!divisibleBy3.includes(item)) {
+                        divisibleBy3.push(item);
+                    }
+                }
+            });
+            divisibleBy3.sort((p, q) => q - p);
+            document.getElementById("answer").innerHTML = "numbers divisible by 3 are " + divisibleBy3;
+            var y = divisibleBy3.join("");
+            document.getElementById("largestnum").innerHTML = "largest number divisible by 3 is " + y;
+            document.getElementById("resultis").innerHTML = y + " divided by 3 is " + y/3;
+        }
+    </script>
+</body>
+</html>
